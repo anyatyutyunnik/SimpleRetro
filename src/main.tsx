@@ -7,6 +7,8 @@ import { createRoot } from 'react-dom/client'
 import { appStarted, scope } from '@app/shared/config'
 import { history, router } from '@app/shared/router'
 
+import { Screens } from '@app/screens'
+
 async function render() {
   await allSettled(appStarted, { scope })
   await allSettled(router.setHistory, { scope, params: history })
@@ -14,7 +16,7 @@ async function render() {
     <StrictMode>
       <Provider value={scope}>
         <RouterProvider router={router}>
-          <div>Hello yopta</div>
+          <Screens />
         </RouterProvider>
       </Provider>
     </StrictMode>,
