@@ -4,10 +4,10 @@ import { Provider } from 'effector-react'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import { appStarted, scope } from '@app/shared/config'
-import { history, router } from '@app/shared/router'
-
 import { Screens } from '@app/screens'
+import { appStarted, scope } from '@app/shared/config'
+import '@app/shared/firebase'
+import { history, router } from '@app/shared/router'
 
 async function render() {
   await allSettled(appStarted, { scope })
