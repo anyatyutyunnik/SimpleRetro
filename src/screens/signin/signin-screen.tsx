@@ -17,7 +17,7 @@ const SigninScreen: FC = () => {
           value={form.fields.displayName.value}
           onChange={(event) => form.fields.displayName.onChange(event.target.value)}
         />
-        <Button>Sign in as anonymous</Button>
+        <Button type='submit'>Sign in as anonymous</Button>
       </Form>
       <div>
         <Button onPress={onSigninByGooglePress}>Sign in via Google</Button>
