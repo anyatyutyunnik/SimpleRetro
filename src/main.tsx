@@ -8,6 +8,7 @@ import { Screens } from '@app/screens'
 import { appStarted, scope } from '@app/shared/config'
 import '@app/shared/firebase'
 import { history, router } from '@app/shared/router'
+import '@app/shared/session'
 
 async function render() {
   await allSettled(appStarted, { scope })

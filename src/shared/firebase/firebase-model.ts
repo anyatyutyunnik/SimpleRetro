@@ -1,10 +1,16 @@
-import { createEffect, createStore, sample } from 'effector'
+import { createEffect, createEvent, createStore, sample } from 'effector'
 import { type FirebaseApp, initializeApp } from 'firebase/app'
 import { type Auth, initializeAuth } from 'firebase/auth'
 import { type Firestore, getFirestore } from 'firebase/firestore'
 import { spread } from 'patronum'
 
 import { appStarted } from '@app/shared/config'
+
+const firebaseAttached = createEvent()
+
+const $firebase = createStore<FirebaseApp | null>(null)
+const $firestore = createStore<Firestore | null>(null)
+const $fireauth = createStore<Auth | null>(null)
 
 const createFireBaseFx = createEffect(() => {
   const firebaseConfig = {
@@ -27,10 +33,6 @@ const createFireBaseFx = createEffect(() => {
   }
 })
 
-const $firebase = createStore<FirebaseApp | null>(null)
-const $firestore = createStore<Firestore | null>(null)
-const $fireauth = createStore<Auth | null>(null)
-
 sample({
   clock: appStarted,
   target: createFireBaseFx,
@@ -45,4 +47,10 @@ sample({
   }),
 })
 
-export { $firebase, $firestore, $fireauth }
+sample({
+  clock: createFireBaseFx.done,
+  fn: () => {},
+  target: firebaseAttached
+})
+
+export { $firebase, $firestore, $fireauth, firebaseAttached }
