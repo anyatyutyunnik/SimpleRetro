@@ -9,7 +9,7 @@ const routes = {
   signin: createRoute(),
   board: createRoute(),
   boardList: createRoute(),
-  main: createRoute()
+  main: createRoute(),
 }
 
 const router = createHistoryRouter({

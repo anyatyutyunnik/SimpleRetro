@@ -1,5 +1,5 @@
 import { routes } from '@app/shared/router'
 
-const route = routes.board;
+const route = routes.board
 
 export { route }
