@@ -6,14 +6,24 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import invariant from 'ts-invariant'
+import { object, string } from 'yup'
 
 import { $fireauth } from '@app/shared/firebase'
 import { routes } from '@app/shared/router'
 import { createForm } from '@effector-reform/core'
+import { yupAdapter } from '@effector-reform/yup'
 
 const route = routes.signin
 
-const anonymousForm = createForm({ schema: { displayName: '' } })
+const anonymousForm = createForm({
+  schema: { displayName: '' },
+  // @ts-expect-error (todo)
+  validation: yupAdapter(
+    object({
+      displayName: string().required('Name is required'),
+    }),
+  ),
+})
 
 const signinByGooglePressed = createEvent()
 

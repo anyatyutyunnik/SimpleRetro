@@ -1,7 +1,7 @@
 import { useUnit } from 'effector-react'
 import { type FC } from 'react'
 
-import { Button, Form, Input } from '@app/shared/ui'
+import { Button, Form, TextField } from '@app/shared/ui'
 import { useForm } from '@effector-reform/react'
 
 import { anonymousForm, signinByGooglePressed } from './model/signin-screen-model'
@@ -13,9 +13,12 @@ const SigninScreen: FC = () => {
   return (
     <div>
       <Form onSubmit={form.onSubmit}>
-        <Input
+        <TextField
+          label="Enter your name"
+          errorMessage={form.fields.displayName.error ?? ''}
+          isInvalid={!form.fields.displayName.isValid}
           value={form.fields.displayName.value}
-          onChange={(event) => form.fields.displayName.onChange(event.target.value)}
+          onChange={form.fields.displayName.onChange}
         />
         <Button type="submit">Sign in as anonymous</Button>
       </Form>
