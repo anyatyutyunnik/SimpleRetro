@@ -50,7 +50,7 @@ sample({
 sample({
   clock: createFireBaseFx.done,
   fn: () => {},
-  target: firebaseAttached
+  target: firebaseAttached,
 })
 
 export { $firebase, $firestore, $fireauth, firebaseAttached }
