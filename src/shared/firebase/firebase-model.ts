@@ -1,6 +1,6 @@
 import { createEffect, createEvent, createStore, sample } from 'effector'
 import { type FirebaseApp, initializeApp } from 'firebase/app'
-import { type Auth, initializeAuth } from 'firebase/auth'
+import { type Auth, getAuth } from 'firebase/auth'
 import { type Firestore, getFirestore } from 'firebase/firestore'
 import { spread } from 'patronum'
 
@@ -24,7 +24,7 @@ const createFireBaseFx = createEffect(() => {
 
   const firebase = initializeApp(firebaseConfig)
   const firestore = getFirestore(firebase)
-  const fireauth = initializeAuth(firebase)
+  const fireauth = getAuth(firebase)
 
   return {
     firebase,

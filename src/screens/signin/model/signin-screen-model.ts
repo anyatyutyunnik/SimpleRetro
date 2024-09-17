@@ -1,6 +1,10 @@
 import { attach, createEvent, sample } from 'effector'
-import { signInAnonymously, signInWithPopup, updateProfile } from 'firebase/auth'
-import { GoogleAuthProvider } from 'firebase/auth/web-extension'
+import {
+  GoogleAuthProvider,
+  signInAnonymously,
+  signInWithPopup,
+  updateProfile,
+} from 'firebase/auth'
 import invariant from 'ts-invariant'
 
 import { $fireauth } from '@app/shared/firebase'
