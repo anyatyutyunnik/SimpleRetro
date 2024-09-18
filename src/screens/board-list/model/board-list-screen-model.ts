@@ -1,5 +1,5 @@
-import { routes } from '@app/shared/router'
+import { chainAuth, routes } from '@app/shared/router'
 
-const route = routes.boardList
+const route = chainAuth()(routes.boardList)
 
 export { route }

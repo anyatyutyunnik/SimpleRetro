@@ -9,7 +9,8 @@ import invariant from 'ts-invariant'
 import { object, string } from 'yup'
 
 import { $fireauth } from '@app/shared/firebase'
-import { routes } from '@app/shared/router'
+import { redirect, router, routes } from '@app/shared/router'
+import { urls } from '@app/shared/urls'
 import { createForm } from '@effector-reform/core'
 import { yupAdapter } from '@effector-reform/yup'
 
@@ -32,7 +33,7 @@ const signinAnonymousFx = attach({
   effect: async ([fireauth, values]) => {
     invariant(fireauth)
     const result = await signInAnonymously(fireauth)
-    updateProfile(result.user, { displayName: values.displayName })
+    await updateProfile(result.user, { displayName: values.displayName })
   },
 })
 
@@ -53,6 +54,13 @@ sample({
 sample({
   clock: signinByGooglePressed,
   target: signinGoogleFx,
+})
+
+sample({
+  clock: [signinAnonymousFx.done, signinGoogleFx.done],
+  source: router.$query,
+  fn: (query) => query.retpath ?? urls.getMainUrl().pathname,
+  target: redirect,
 })
 
 export { route, anonymousForm, signinByGooglePressed }
