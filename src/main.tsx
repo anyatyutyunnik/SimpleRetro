@@ -1,5 +1,5 @@
 import { RouterProvider } from 'atomic-router-react'
-import { allSettled } from 'effector'
+import { allSettled } from 'effector';
 import { Provider } from 'effector-react'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
