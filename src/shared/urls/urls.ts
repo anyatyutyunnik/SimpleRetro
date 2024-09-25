@@ -11,6 +11,9 @@ const urls = {
   getBoardListUrl: () => {
     return createAppUrl('/board-list')
   },
+  getNotFoundUrl: () => {
+    return createAppUrl('/404')
+  },
 }
 
 function createAppUrl(url: string) {
