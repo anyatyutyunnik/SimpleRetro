@@ -11,6 +11,7 @@ const routes = {
   board: createRoute(),
   boardList: createRoute(),
   main: createRoute(),
+  notFound: createRoute(),
 }
 
 const router = createHistoryRouter({
@@ -19,6 +20,7 @@ const router = createHistoryRouter({
     { path: urls.getSigninUrl().pathname, route: routes.signin },
     { path: urls.getBoardUrl().pathname, route: routes.board },
     { path: urls.getBoardListUrl().pathname, route: routes.boardList },
+    { path: urls.getNotFoundUrl().pathname, route: routes.notFound },
   ],
 })
 
@@ -34,6 +36,12 @@ const redirectFx = attach({
 sample({
   clock: redirect,
   target: redirectFx,
+})
+
+sample({
+  clock: router.routeNotFound,
+  fn: () => {},
+  target: routes.notFound.open,
 })
 
 export { history, routes, router, redirect }
